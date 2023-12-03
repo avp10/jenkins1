@@ -5,7 +5,7 @@ pipeline {
             }
       }
     triggers {
-        pollSCM '*/2 * * * *'
+        pollSCM '* * * * *'
     }
     stages {
         stage('Build') {
@@ -15,7 +15,6 @@ pipeline {
                 cd myapp
                 pip install -r requirements.txt
                 '''
-                echo "Building sucessful"
             }
         }
         stage('Test') {
@@ -26,14 +25,13 @@ pipeline {
                 python3 hello.py
                 python3 hello.py --name=Brad
                 '''
-                echo "Testing sucessful"
             }
         }
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
                 sh '''
-                echo "doing delivery stuff.., delivery successful!!"
+                echo "doing delivery stuff.."
                 '''
             }
         }
